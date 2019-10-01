@@ -1,9 +1,63 @@
+/* body {
+    background-image: url("https://wallpaperplay.com/walls/full/c/7/0/195311.jpg");
+    width: 1000%;  
+} */
+.section {                   /* video styling */
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    overflow: hidden;
+}
+.section h1 {
+    text-align: left;
+    font-size: 3rem;
+    padding: 10px;
+    margin: 18px;
+    z-index: 1;
+    /* opacity: 0.7; */
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.color-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    opacity: 0.5;
+} 
+#welcome-container {
+    z-index: 1;
+    opacity: 0.7;
+} 
+#create-user {
+    text-align: left;
+    margin: 30px;
+    padding: 5px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+/* #sign-up {
+    text-align: left;
+    margin: 30px;
+    padding: 5px;
+    color: white;
+} */
 nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
     min-height: 8vh;
-    background-color: lightseagreen;
+    background-color: rgb(77, 184, 63);
     font-family: 'Poppins', sans-serif;
 }
 .logo {

@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', (event) => {
+    const section = document.querySelector(".section")
+    const welcome_container = document.querySelector("#welcome-container")
     const container = document.querySelector("#container")
     const form_create_user = document.querySelector("#create-user")
     let user;
+    let destination;
 
     form_create_user.addEventListener("submit", (event) => {
         event.preventDefault()
@@ -20,7 +23,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             user = data
         })
     
-        container.innerHTML = ''
+        section.innerHTML = ''
         fetch("http://localhost:3000/destinations")
         .then(response => response.json())
         .then(renderDestinations)
@@ -40,7 +43,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     })
 
     container.addEventListener("click", (event) => {
-        // debugger
         if(event.target.tagName === "IMG") {
             container.innerHTML = ''
             fetch(`http://localhost:3000/destinations/${event.target.parentElement.dataset.id}`)
@@ -60,6 +62,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 </div>`
                 container.insertAdjacentHTML("beforeend", str)
                 form_select_flight = document.querySelector(".select_flight");
+                destination = dest
             }  
         } else if (event.target.dataset.action === "create_flight") {
             event.preventDefault()
@@ -81,10 +84,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 })
             })
             .then(response => response.json())
-            .then(console.log)
+            .then(renderProfile)
+
+            function renderProfile(flight) {
+                let str =
+                `<div class="user_destination" data-id=${destination.id}>
+                <h3>${destination.location}</h3>
+                <img data-id="${destination.id}" src="${destination.img_url}"></img>
+                <h4>Flight Date: ${flight.date}</h4>
+                </div>`
+                container.insertAdjacentHTML("beforeend", str)
+            }
         }
     })
 
 })
-
-
