@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let show_container;
     let user;
     let destination;
-    let show_container;
+    
 
     form_create_user.addEventListener("submit", (event) => {
         event.preventDefault()
