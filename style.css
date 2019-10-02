@@ -102,3 +102,14 @@ img {
     border-radius: 10px;
     background-color: lavenderblush;
 }
+
+/* destination showpage styling */
+
+.show h3 {
+    text-align: center;
+}
+
+/* img {
+  max-width: 100%;
+  height: auto;
+} */

@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const form_create_user = document.querySelector("#create-user")
     let user;
     let destination;
+    let show_container;
 
     form_create_user.addEventListener("submit", (event) => {
         event.preventDefault()
@@ -60,7 +61,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     <input type="submit" name="submit" value="Enter" data-action="create_flight" data-id="${dest.id}">
                 </form>
                 </div>`
-                container.insertAdjacentHTML("beforeend", str)
+                show_container = document.createElement("DIV");
+                show_container.innerHTML = str
+                document.body.appendChild(show_container);
                 form_select_flight = document.querySelector(".select_flight");
                 destination = dest
             }  
