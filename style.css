@@ -69,7 +69,7 @@ body {
     background-color: rgb(208, 224, 228);
 }
 
-img {
+.all_img {
     height: 200px;
     width: 320px;
 }
@@ -132,4 +132,27 @@ img {
 .card:hover .card__img--hover {
     height: 100%;
     opacity: 0.3;
+}
+
+/* ------------------------------------------------------------- */
+
+#show_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.show_img_div {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.show_img_img {
+    height: 500px;
+    width: 750px;
+}
+
+.show_description_div {
+    background-color: rgb(61, 77, 88);
+    margin-top: 10px;
+    color: #fff;
 }

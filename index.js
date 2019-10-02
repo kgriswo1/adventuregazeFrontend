@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const welcome_container = document.querySelector("#welcome-container")
     const form_create_user = document.querySelector("#create-user")
     let container = document.querySelector("#container");
+    let show_container;
     let user;
     let destination;
 
@@ -50,13 +51,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
             document.body.appendChild(container)
             dests.forEach(renderOneDestination)
         }
-        // <div class="img img1"><img data-id="${dest.id}" src="${dest.img_url}"></div>
-        // <svg class="card__like"  viewBox="0 0 24 24">
-
         function renderOneDestination(dest) {
             let str = 
             `<div class="card" data-id=${dest.id}>
-                <div><img data-id="${dest.id}" src="${dest.img_url}"></div>
+                <div><img class="all_img" data-id="${dest.id}" src="${dest.img_url}"></div>
                 <div class="card__info">
                     <h3 class="card__title">${dest.location}</h3>
                 </div>
@@ -66,27 +64,31 @@ document.addEventListener('DOMContentLoaded', (event) => {
     })
 
     body.addEventListener("click", (event) => {
-        // debugger
         if(event.target.tagName === "IMG") {
             container.innerHTML = ''
-            fetch(`http://localhost:3000/destinations/${event.target.parentElement.dataset.id}`)
+            fetch(`http://localhost:3000/destinations/${event.target.parentElement.parentElement.dataset.id}`)
             .then(response => response.json())
             .then(showDestination)
 
             function showDestination(dest) {
                 let str = 
-                `<div class="show" data-id=${dest.id}>
+                `<div class="show_img_div"><img class="show_img_img" data-id="${dest.id}"src="${dest.img_url}"></img></div>
+                <div class="show_description_div">
                     <h3>${dest.location}</h3>
-                    <img data-id="${dest.id}"src="${dest.img_url}"></img>
                     <p>${dest.description}</p>
                     <form class="select_flight">
                         <input type="date" name="name" min="2019-04-03" max="2019-12-31">
                         <input type="submit" name="submit" value="Enter" data-action="create_flight" data-id="${dest.id}">
                     </form>
                 </div>`
-                container.insertAdjacentHTML("beforeend", str)
+
+                show_container = document.createElement("DIV");
+                show_container.id = "show_container"
+                show_container.innerHTML = str
+                document.body.appendChild(show_container);
                 form_select_flight = document.querySelector(".select_flight");
                 destination = dest
+
             }  
         } else if (event.target.dataset.action === "create_flight") {
             event.preventDefault()
