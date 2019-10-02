@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // debugger
         if(event.target.tagName === "IMG") {
             container.innerHTML = ''
-            fetch(`http://localhost:3000/destinations/${event.target.parentElement.dataset.id}`)
+            fetch(`http://localhost:3000/destinations/${event.target.parentElement.parentElement.dataset.id}`)
             .then(response => response.json())
             .then(showDestination)
 
