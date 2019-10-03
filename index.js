@@ -32,8 +32,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     <h1>${dest.location}</h1>
                     <p>${dest.description}</p>
                     <form class="select_flight">
-                        <input type="date" name="name" min="2019-04-03" max="2019-12-31">
-                        <input type="submit" name="submit" value="Enter" data-action="create_flight" data-id="${dest.id}">
+                        Pick your date: <br>
+                        <input type="date" name="name" class="date-input" min="2019-04-03" max="2019-12-31">
+                        <input type="submit" name="submit" class="date-submit" value="Enter" data-action="create_flight" data-id="${dest.id}">
                     </form>
                 </div>`
 

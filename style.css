@@ -1,3 +1,7 @@
+* {
+    font-family: 'Playfair Display', serif;
+}
+
 .section {                   /* video styling */
     position: fixed;
     width: 100%;
@@ -168,12 +172,17 @@ body {
 }
 
 .show_description_div h1 {
-    margin: 10px;
-    margin-top: 20px;
+    margin: 15px;
+    margin-top: 30px;
     margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
 }
 .show_description_div p {
     margin: 10px;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    margin: 7%;
+    text-align: justify;
 }
 .long_img{
     margin-right: -20px;
@@ -190,3 +199,24 @@ body {
 .profile_img img {
     width: 230px;
 }
+
+.date-input {
+  width: 50%;
+  border-radius: 4px;
+}
+
+.date-submit {
+   border-radius: 4px;
+   font-size: small; 
+}
+
+.name-input {
+   font-size: medium;
+   border-radius: 4px; 
+}
+
+.name-submit {
+   border-radius: 4px;
+   font-size: small; 
+}
+
