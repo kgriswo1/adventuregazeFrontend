@@ -63,7 +63,8 @@ nav {
     /* width: 40%; */
     list-style-type: none;
     padding:  0;
-    margin-left: 945px;
+    margin-left: 930px;
+    font-size: 14px;
 }
 /* .nav-links li {
     float: left;
@@ -140,6 +141,7 @@ body {
 
 .card__info{
     text-align: center;
+    margin-bottom: 10px;
 }
 /* ------------------------------------------------------------- */
 
@@ -178,7 +180,7 @@ body {
 .long_img{
     margin-right: -20px;
     margin-left: -20px;
-    margin-top: -70px;
+    margin-top: -75px;
 }
 .long_img img {
     width: 1460px;
@@ -189,4 +191,14 @@ body {
 }
 .profile_img img {
     width: 230px;
+}
+#profile_container {
+    margin-top: 148px;
+    margin-bottom: -100px;
+}
+
+.date {
+    font-size: 12px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
 }

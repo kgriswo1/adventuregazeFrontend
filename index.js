@@ -20,8 +20,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     body.addEventListener("click", (event) => {
         if(event.target.tagName === "IMG") {
-            container.innerHTML = ''
-            fetch(`http://localhost:3000/destinations/${event.target.parentElement.parentElement.dataset.id}`)
+            body.innerHTML = ''
+            renderNavbar()
+            let id;
+            if (event.target.parentElement.parentElement.dataset.id) {
+                id = event.target.parentElement.parentElement.dataset.id
+            } else if (event.target.dataset.id) {
+                id = event.target.dataset.id
+            }
+            // debugger
+            fetch(`http://localhost:3000/destinations/${id}`)
             .then(response => response.json())
             .then(showDestination)
 
@@ -32,7 +40,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     <h1>${dest.location}</h1>
                     <p>${dest.description}</p>
                     <form class="select_flight">
-                        <input type="date" name="name" min="2019-04-03" max="2019-12-31">
+                        <input type="date" name="name" min="2019-10-03" max="2020-12-31">
                         <input type="submit" name="submit" value="Enter" data-action="create_flight" data-id="${dest.id}">
                     </form>
                 </div>`
@@ -77,11 +85,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 })
             }
 
-        } else if (event.target.innerText === "Home") {
+        } else if (event.target.innerText === "HOME") {
             renderHomePage()
-        } else if (event.target.innerHTML === "Profile") {
+        } else if (event.target.innerHTML === "PROFILE") {
             renderProfile(destinations)
-        }
+        } 
     })
 
     function findDest(id) { 
@@ -93,7 +101,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     function renderProfile(destinations) {
         body.innerHTML = ''
-        renderNavbar()
+        let str =  
+        `<nav id="nav-bar">
+            <div class="logo">
+                <h4>WELCOME ${user.name.toUpperCase()}</h4>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" data-action="home">HOME</a></li>
+                <li><a href="#" data-action="profile">PROFILE</a></li>  
+            </ul>
+        </nav>`
+        body.insertAdjacentHTML("beforeend", str)
+        container = document.createElement("DIV")
+        container.id = "container"
+        document.body.appendChild(container)
 
         let images = 
         `<div class="long_img"><img src="long_img.jpg"></div>
@@ -101,7 +122,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         profile_container = document.createElement("DIV");
         profile_container.id = "profile_container"
-        document.body.appendChild(profile_container);
+        // document.body.appendChild(profile_container);
+        body.insertBefore(profile_container, container)
         profile_container.insertAdjacentHTML("beforeend", images) 
 
         destinations.forEach(renderUserDest)
@@ -112,7 +134,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         `<div class="card" data-id=${dest.id}>
             <div><img class="all_img" data-id="${dest.id}" src="${dest.img_url}"></div>
             <div class="card__info">
-                <h3 class="card__title">${dest.location} ${dest.date}</h3>
+                <h3 class="card__title">${dest.location}</h3>
+                <span class="date">${dest.date}</span>
             </div>
         </div>`
         container.insertAdjacentHTML("beforeend", tiles)
@@ -123,22 +146,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
         fetch("http://localhost:3000/destinations")
         .then(response => response.json())
         .then(renderDestinations)
-    
-        function renderDestinations(dests) {
-            renderNavbar()
-            dests.forEach(renderOneDestination)
-            all_destinations = [...dests]
-        }
-        function renderOneDestination(dest) {
-            let str = 
-            `<div class="card" data-id=${dest.id}>
-                <div><img class="all_img" data-id="${dest.id}" src="${dest.img_url}"></div>
-                <div class="card__info">
-                    <h3 class="card__title">${dest.location}</h3>
-                </div>
-            </div>`
-            container.insertAdjacentHTML("beforeend", str)
-        }
+    }
+
+    function renderDestinations(dests) {
+        renderNavbar()
+        dests.forEach(renderOneDestination)
+        all_destinations = [...dests]
+    }
+    function renderOneDestination(dest) {
+        let str = 
+        `<div class="card" data-id=${dest.id}>
+            <div><img class="all_img" data-id="${dest.id}" src="${dest.img_url}"></div>
+            <div class="card__info">
+                <h3 class="card__title">${dest.location}</h3>
+            </div>
+        </div>`
+        container.insertAdjacentHTML("beforeend", str)
     }
 
     function renderNavbar() {
@@ -148,12 +171,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 <h4>AdventureGaze</h4>
             </div>
             <ul class="nav-links">
-                <li>
-                    <a href="#" data-action="home">Home</a>
-                </li>
-                <li>
-                    <a href="#" data-action="profile">Profile</a>
-                </li>    
+                <li><a href="#" data-action="home">HOME</a></li>
+                <li><a href="#" data-action="profile">PROFILE</a></li>  
             </ul>
         </nav>`
         body.insertAdjacentHTML("beforeend", str)
