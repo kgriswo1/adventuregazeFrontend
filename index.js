@@ -23,16 +23,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
     })
 
     body.addEventListener("click", (event) => {
-        if(event.target.tagName === "IMG") {
+        // debugger
+        if(event.target.className === "all_img" || event.target.className === "card__info") {
             body.innerHTML = ''
             renderNavbar()
             let id;
             if (event.target.parentElement.parentElement.dataset.id) {
                 id = event.target.parentElement.parentElement.dataset.id
-            } else if (event.target.dataset.id) {
-                id = event.target.dataset.id
+            } else if (event.target.parentElement.dataset.id) {
+                id = event.target.parentElement.dataset.id
             }
+
             // debugger
+
             fetch(`http://localhost:3000/destinations/${id}`)
             .then(response => response.json())
             .then(showDestination)
@@ -105,10 +108,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         let str = 
         `<div class="about_img">
-            <img src="about_img.jpg">
+            <img class="about_img_img" src="about_img.jpg">
             <h1>WELCOME TO ADVENTUREGAZE</h1>
         </div>
-        <div class="about_info"><p>We are a team of adventures and wanderers. We carefully selected a curated list of our most favorite destinations in the world so you can browse the most unique places and see their descriptions. You can also safe the date that you will be traveling into your profile page. As as many as we can provide and go out and explore!</p></div>`
+        <div class="about_info">
+            <p>We are a team of adventures and wanderers. We carefully selected a curated list of our most favorite destinations in the world so you can browse the most unique places and see their descriptions. You can also save the date that you will be traveling into your profile page. Pick as many places as you want to explore. The wolrd is yours. Log your places so you can always safe your precious memories.</p>
+            <p id="just_go">JUST GO!</p>
+        </div>`
 
         about_container = document.createElement("DIV");
         about_container.id = "about_container"

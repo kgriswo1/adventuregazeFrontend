@@ -229,9 +229,31 @@ body {
 }
 
 /* -------------------------------------------------- */
+.about_img_img {
+    width: 1500px;
+    margin-top: 67px;
+    height: 400px;
+    margin-left: -8px;
+    /* position: fixed; */
+}
+.about_img h1 {
+    color: white;
+    margin-top: -200px;
+    text-align: center;
+    font-size: 50px;
+    /* position: fixed; */
+}
 
-.about_img {
-    margin-right: -20px;
-    margin-left: -20px;
-    margin-top: -75px;
+.about_info {
+    margin-top: 200px;
+    text-align: center;
+    margin-left: 270px;
+    margin-right: 270px;
+    /* margin: 270px; */
+    font-size: 25px;
+}
+
+#just_go {
+    font-size: 30px;
+    font-weight: bold;
 }
