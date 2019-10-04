@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // const welcome_container = document.querySelector("#welcome-container")
     const form_create_user = document.querySelector("#create-user")
     let container = document.querySelector("#container");
+    let about_container;
     let profile_container;
     let show_container;
     let user;
@@ -12,6 +13,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
 
     form_create_user.addEventListener("submit", (event) => {
+        if (event.target.name.value === "") {
+            return alert("Please enter a name!")
+        }
         event.preventDefault()
         let name = event.target.name.value
         createNewUser(name)
@@ -90,8 +94,29 @@ document.addEventListener('DOMContentLoaded', (event) => {
             renderHomePage()
         } else if (event.target.innerHTML === "PROFILE") {
             renderProfile(destinations)
-        } 
+        } else if (event.target.innerHTML === "ABOUT") {
+            renderAboutPage()
+        }
     })
+
+    function renderAboutPage() {
+        body.innerHTML = ''
+        renderNavbar()
+
+        let str = 
+        `<div class="about_img">
+            <img src="about_img.jpg">
+            <h1>WELCOME TO ADVENTUREGAZE</h1>
+        </div>
+        <div class="about_info"><p>We are a team of adventures and wanderers. We carefully selected a curated list of our most favorite destinations in the world so you can browse the most unique places and see their descriptions. You can also safe the date that you will be traveling into your profile page. As as many as we can provide and go out and explore!</p></div>`
+
+        about_container = document.createElement("DIV");
+        about_container.id = "about_container"
+        body.insertBefore(about_container, container)
+        about_container.insertAdjacentHTML("beforeend", str) 
+
+
+    }
 
     function findDest(id) { 
         let dest = all_destinations.find(function (destination) {
@@ -110,6 +135,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             <ul class="nav-links">
                 <li><a href="#" data-action="home">HOME</a></li>
                 <li><a href="#" data-action="profile">PROFILE</a></li>  
+                <li><a href="#" data-action="profile">ABOUT</a></li> 
             </ul>
         </nav>`
         body.insertAdjacentHTML("beforeend", str)
@@ -157,7 +183,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function renderOneDestination(dest) {
         let str = 
         `<div class="card" data-id=${dest.id}>
-            <div><img class="all_img" data-id="${dest.id}" src="${dest.img_url}"></div>
+            <div class="card_img"><img class="all_img" data-id="${dest.id}" src="${dest.img_url}"></div>
             <div class="card__info">
                 <h3 class="card__title">${dest.location}</h3>
             </div>
@@ -174,6 +200,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             <ul class="nav-links">
                 <li><a href="#" data-action="home">HOME</a></li>
                 <li><a href="#" data-action="profile">PROFILE</a></li>  
+                <li><a href="#" data-action="profile">ABOUT</a></li>  
             </ul>
         </nav>`
         body.insertAdjacentHTML("beforeend", str)
